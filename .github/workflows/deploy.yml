@@ -27,7 +27,7 @@ jobs:
       - name: Preparar artefato
         run: |
           mkdir -p _site
-          cp index.html app.js data.json .nojekyll _site/
+          cp index.html app.js data.json br-states.geojson .nojekyll _site/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

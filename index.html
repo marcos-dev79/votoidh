@@ -81,9 +81,110 @@
     .legend-dot.flavio { background: var(--flavio); }
     .legend-dot.caiado { background: var(--caiado); }
 
+    .map-card .legend {
+      margin: 0 0 1rem;
+    }
+
+    .map-layout {
+      display: grid;
+      grid-template-columns: 1fr minmax(240px, 300px);
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      .map-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .map-wrap {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      padding: 0.5rem;
+    }
+
+    .map-wrap svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 520px;
+    }
+
+    .map-wrap path {
+      cursor: pointer;
+      stroke: var(--bg);
+      stroke-width: 0.6;
+      transition: filter 0.15s ease, stroke-width 0.15s ease;
+    }
+
+    .map-wrap path:hover {
+      filter: brightness(1.12);
+      stroke: rgba(255, 255, 255, 0.55);
+      stroke-width: 1.2;
+    }
+
+    .map-wrap path.is-selected {
+      stroke: #fff;
+      stroke-width: 2;
+      filter: brightness(1.15);
+    }
+
+    .map-detail {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      min-height: 200px;
+    }
+
+    .map-detail-placeholder {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .map-detail h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .map-detail dl {
+      display: grid;
+      gap: 0.45rem;
+      font-size: 0.875rem;
+    }
+
+    .map-detail dt {
+      color: var(--muted);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .map-detail dd {
+      margin: 0;
+    }
+
+    .map-detail .ref-list {
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .map-detail .ref-list strong {
+      color: var(--text);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
     .charts-grid {
       display: grid;
       gap: 2rem;
+    }
+
+    .charts-grid.map-section {
+      margin-bottom: 2.5rem;
     }
 
     .chart-card {
@@ -287,18 +388,32 @@
   </header>
 
   <main>
-    <div class="legend">
-      <div class="legend-item">
-        <span class="legend-dot lula"></span>
-        <span>Lula à frente</span>
-      </div>
-      <div class="legend-item">
-        <span class="legend-dot flavio"></span>
-        <span>Flávio Bolsonaro à frente</span>
-      </div>
-      <div class="legend-item">
-        <span class="legend-dot caiado"></span>
-        <span>Ronaldo Caiado à frente</span>
+    <div class="charts-grid map-section">
+      <div class="chart-card map-card">
+        <h2>Mapa — quem lidera por estado</h2>
+        <p>Clique em um estado para ver IDHM, intenção de voto e fonte da pesquisa.</p>
+        <div class="legend">
+          <div class="legend-item">
+            <span class="legend-dot lula"></span>
+            <span>Lula à frente</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot flavio"></span>
+            <span>Flávio Bolsonaro à frente</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot caiado"></span>
+            <span>Ronaldo Caiado à frente</span>
+          </div>
+        </div>
+        <div class="map-layout">
+          <div class="map-wrap">
+            <svg id="brMap" role="img" aria-label="Mapa do Brasil por intenção de voto"></svg>
+          </div>
+          <div class="map-detail" id="mapDetail">
+            <p class="map-detail-placeholder">Clique em um estado no mapa.</p>
+          </div>
+        </div>
       </div>
     </div>
 

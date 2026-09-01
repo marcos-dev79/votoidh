@@ -297,6 +297,163 @@ function renderScatterChart(estados) {
   });
 }
 
+async function loadMapGeo() {
+  const url = assetUrl(`br-states.geojson?_=${Date.now()}`);
+  const response = await fetch(url, {
+    cache: "no-store",
+    headers: { "Cache-Control": "no-cache", Pragma: "no-cache" },
+  });
+  if (!response.ok) {
+    throw new Error(`Falha ao carregar br-states.geojson (${response.status})`);
+  }
+  return response.json();
+}
+
+function walkCoords(geometry, fn) {
+  const { type, coordinates } = geometry;
+  if (type === "Polygon") {
+    coordinates.forEach((ring) => ring.forEach((c) => fn(c)));
+  } else if (type === "MultiPolygon") {
+    coordinates.forEach((poly) => poly.forEach((ring) => ring.forEach((c) => fn(c))));
+  }
+}
+
+function geoBounds(geojson) {
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+  geojson.features.forEach((f) => {
+    walkCoords(f.geometry, ([x, y]) => {
+      minX = Math.min(minX, x);
+      minY = Math.min(minY, y);
+      maxX = Math.max(maxX, x);
+      maxY = Math.max(maxY, y);
+    });
+  });
+  return [minX, minY, maxX, maxY];
+}
+
+function makeProjector(bounds, width, height, padding) {
+  const [minX, minY, maxX, maxY] = bounds;
+  const scale = Math.min(
+    (width - 2 * padding) / (maxX - minX),
+    (height - 2 * padding) / (maxY - minY),
+  );
+  return (x, y) => {
+    const px = (x - minX) * scale + padding;
+    const py = height - ((y - minY) * scale + padding);
+    return [px, py];
+  };
+}
+
+function ringToPath(ring, project) {
+  return ring
+    .map((c, i) => {
+      const [px, py] = project(c[0], c[1]);
+      return `${i === 0 ? "M" : "L"}${px.toFixed(1)},${py.toFixed(1)}`;
+    })
+    .join(" ") + " Z";
+}
+
+function geometryToPaths(geometry, project) {
+  const paths = [];
+  if (geometry.type === "Polygon") {
+    geometry.coordinates.forEach((ring) => paths.push(ringToPath(ring, project)));
+  } else if (geometry.type === "MultiPolygon") {
+    geometry.coordinates.forEach((poly) => {
+      poly.forEach((ring) => paths.push(ringToPath(ring, project)));
+    });
+  }
+  return paths;
+}
+
+function renderMapDetail(estado, meta) {
+  const panel = document.getElementById("mapDetail");
+  const leader = getLeader(estado);
+  const candidatos = meta.candidatos || {};
+
+  let refHtml = "";
+  if (estado.referencia && Object.keys(estado.referencia).length > 0) {
+    const items = Object.entries(estado.referencia)
+      .map(([id, pct]) => {
+        const nome = candidatos[id]?.nome || id;
+        return `${nome}: ${pct}%`;
+      })
+      .join(" · ");
+    refHtml = `<p class="ref-list"><strong>Outros candidatos</strong><br>${items}</p>`;
+  }
+
+  panel.innerHTML = `
+    <h3>${estado.nome} (${estado.uf})</h3>
+    <dl>
+      <dt>IDHM 2024</dt>
+      <dd>${formatIdh(estado.idh)}</dd>
+      <dt>Lula (PT)</dt>
+      <dd>${formatPercent(estado.votos.lula)}</dd>
+      <dt>Flávio Bolsonaro (PL)</dt>
+      <dd>${formatPercent(estado.votos.flavio)}</dd>
+      <dt>Ronaldo Caiado (PSD)</dt>
+      <dd>${formatPercent(estado.votos.caiado)}</dd>
+      <dt>À frente</dt>
+      <dd><span class="badge ${leader.key}">${LEADER_CONFIG[leader.key].label}</span></dd>
+      <dt>Fonte</dt>
+      <dd>${estado.pesquisa.instituto} (${estado.pesquisa.data})</dd>
+    </dl>
+    ${refHtml}
+  `;
+}
+
+function selectMapState(uf, estadoByUf, meta, svg) {
+  svg.querySelectorAll("path[data-uf]").forEach((p) => {
+    p.classList.toggle("is-selected", p.dataset.uf === uf);
+  });
+  const estado = estadoByUf[uf];
+  if (estado) renderMapDetail(estado, meta);
+}
+
+function renderBrazilMap(geojson, estados, meta) {
+  const svg = document.getElementById("brMap");
+  const estadoByUf = Object.fromEntries(estados.map((e) => [e.uf, e]));
+  const width = 800;
+  const height = 700;
+  const bounds = geoBounds(geojson);
+  const project = makeProjector(bounds, width, height, 24);
+
+  svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+  svg.innerHTML = "";
+
+  geojson.features.forEach((feature) => {
+    const uf = feature.properties.uf;
+    const estado = estadoByUf[uf];
+    const leaderKey = estado ? getLeader(estado).key : "lula";
+    const fill = estado ? LEADER_CONFIG[leaderKey].color : "#3a4a5c";
+
+    const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    group.setAttribute("data-uf", uf);
+
+    geometryToPaths(feature.geometry, project).forEach((d) => {
+      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      path.setAttribute("d", d);
+      path.setAttribute("fill", fill);
+      path.setAttribute("data-uf", uf);
+      path.setAttribute("tabindex", "0");
+      path.setAttribute("role", "button");
+      path.setAttribute("aria-label", `${feature.properties.nome || uf}`);
+      path.addEventListener("click", () => selectMapState(uf, estadoByUf, meta, svg));
+      path.addEventListener("keydown", (ev) => {
+        if (ev.key === "Enter" || ev.key === " ") {
+          ev.preventDefault();
+          selectMapState(uf, estadoByUf, meta, svg);
+        }
+      });
+      group.appendChild(path);
+    });
+
+    svg.appendChild(group);
+  });
+}
+
 function showLoading() {
   const main = document.querySelector("main");
   const loading = document.createElement("p");
@@ -325,11 +482,13 @@ async function init() {
 
   try {
     const data = await loadData();
+    const geojson = await loadMapGeo();
 
     Chart.defaults.color = "#8b9cb3";
     Chart.defaults.borderColor = "#2a3a52";
 
     renderMeta(data.meta);
+    renderBrazilMap(geojson, data.estados, data.meta);
     renderTable(data.estados);
     renderSecondarySummary(data.meta, data.estados);
     renderSources(data.fontes);
