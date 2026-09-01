@@ -1,0 +1,688 @@
+{
+  "meta": {
+    "titulo": "IDH vs VOTO",
+    "descricao": "Índice de Desenvolvimento Humano Municipal (IDHM 2024) e intenção de voto para Lula (PT), Flávio Bolsonaro (PL) e Ronaldo Caiado (PSD) no 1º turno presidencial, por estado.",
+    "idhm": {
+      "ano": 2024,
+      "indicador": "IDHM",
+      "fonte": "PNUD Radar IDHM / IBGE (PNAD Contínua)"
+    },
+    "nota": "IDHM: Radar IDHM 2024 (PNUD/IBGE), divulgado em maio de 2026. Pesquisas: rodada Quaest contratada pelo Grupo Globo e afiliadas (24–29 ago. 2026), com exceções para Ceará (Genial/Quaest, jul. 2026) e Piauí (GP1, ago. 2026). Margens de erro: ±2 p.p. em São Paulo e ±3 p.p. nos demais estados (Quaest). Cores do gráfico: vermelho = Lula à frente, azul = Flávio à frente, verde = Caiado à frente. Campo referencia em cada estado lista outros candidatos testados na mesma pesquisa (percentual > 0). Catálogo completo em meta.candidatos.",
+    "candidatos": {
+      "lula": {
+        "nome": "Luiz Inácio Lula da Silva",
+        "partido": "PT"
+      },
+      "flavio": {
+        "nome": "Flávio Bolsonaro",
+        "partido": "PL"
+      },
+      "caiado": {
+        "nome": "Ronaldo Caiado",
+        "partido": "PSD"
+      },
+      "renan_santos": {
+        "nome": "Renan Santos",
+        "partido": "Missão"
+      },
+      "romeu_zema": {
+        "nome": "Romeu Zema",
+        "partido": "Novo"
+      },
+      "augusto_cury": {
+        "nome": "Augusto Cury",
+        "partido": "Avante"
+      },
+      "samara_martins": {
+        "nome": "Samara Martins",
+        "partido": "UP"
+      },
+      "rui_pimenta": {
+        "nome": "Rui Costa Pimenta",
+        "partido": "PCO"
+      },
+      "edmilson_costa": {
+        "nome": "Edmilson Costa",
+        "partido": "PCB"
+      },
+      "wilson_grassi": {
+        "nome": "Wilson Grassi",
+        "partido": "Democrata"
+      },
+      "clariana_barao": {
+        "nome": "Clariana Barão",
+        "partido": "DC"
+      },
+      "cabo_daciolo": {
+        "nome": "Cabo Daciolo",
+        "partido": "Mobiliza"
+      },
+      "leonardo_avalanche": {
+        "nome": "Leonardo Avalanche",
+        "partido": "PRTB"
+      },
+      "pablo_marcal": {
+        "nome": "Pablo Marçal",
+        "partido": "PRTB",
+        "nota": "Inelegível; aparece em alguns cenários (ex.: SP com Marçal)"
+      }
+    },
+    "cenarios_referencia": [
+      {
+        "uf": "SP",
+        "cenario": "com Pablo Marçal (inelegível)",
+        "fonte": "Quaest/Globo, ago. 2026",
+        "votos": {
+          "lula": 30,
+          "flavio": 30,
+          "pablo_marcal": 4,
+          "caiado": 3,
+          "renan_santos": 3,
+          "augusto_cury": 2,
+          "romeu_zema": 1,
+          "samara_martins": 1,
+          "wilson_grassi": 1
+        }
+      }
+    ]
+  },
+  "estados": [
+    {
+      "uf": "DF",
+      "nome": "Distrito Federal",
+      "idh": 0.866,
+      "votos": {
+        "lula": 28,
+        "flavio": 26,
+        "caiado": 13
+      },
+      "pesquisa": {
+        "instituto": "Quaest/Globo",
+        "data": "ago. 2026",
+        "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml"
+      },
+      "referencia": {
+        "augusto_cury": 3,
+        "romeu_zema": 3,
+        "renan_santos": 3,
+        "samara_martins": 2
+      }
+    },
+    {
+      "uf": "SP",
+      "nome": "São Paulo",
+      "idh": 0.838,
+      "votos": {
+        "lula": 29,
+        "flavio": 30,
+        "caiado": 4
+      },
+      "pesquisa": {
+        "instituto": "Quaest/Globo",
+        "data": "ago. 2026",
+        "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml"
+      },
+      "referencia": {
+        "romeu_zema": 3,
+        "renan_santos": 3,
+        "augusto_cury": 2,
+        "samara_martins": 1,
+        "rui_pimenta": 1,
+        "wilson_grassi": 1
+      }
+    },
+    {
+      "uf": "SC",
+      "nome": "Santa Catarina",
+      "idh": 0.833,
+      "votos": {
+        "lula": 20,
+        "flavio": 45,
+        "caiado": 3
+      },
+      "pesquisa": {
+        "instituto": "Quaest/Globo",
+        "data": "ago. 2026",
+        "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml"
+      },
+      "referencia": {
+        "renan_santos": 4,
+        "romeu_zema": 3,
+        "augusto_cury": 3,
+        "samara_martins": 1
+      }
+    },
+    {
+      "uf": "PR",
+      "nome": "Paraná",
+      "idh": 0.822,
+      "votos": {
+        "lula": 23,
+        "flavio": 41,
+        "caiado": 5
+      },
+      "pesquisa": {
+        "instituto": "Quaest/Globo",
+        "data": "ago. 2026",
+        "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml"
+      },
+      "referencia": {
+        "romeu_zema": 3,
+        "renan_santos": 2,
+        "augusto_cury": 1,
+        "edmilson_costa": 1
+      }
+    },
+    {
+      "uf": "RJ",
+      "nome": "Rio de Janeiro",
+      "idh": 0.819,
+      "votos": {
+        "lula": 29,
+        "flavio": 31,
+        "caiado": 2
+      },
+      "pesquisa": {
+        "instituto": "Quaest/Globo",
+        "data": "ago. 2026",
+        "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml"
+      },
+      "referencia": {
+        "renan_santos": 2,
+        "romeu_zema": 2,
+        "augusto_cury": 1,
+        "samara_martins": 1
+      }
+    },
+    {
+      "uf": "RS",
+      "nome": "Rio Grande do Sul",
+      "idh": 0.818,
+      "votos": {
+        "lula": 28,
+        "flavio": 34,
+        "caiado": 3
+      },
+      "pesquisa": {
+        "instituto": "Quaest/Globo",
+        "data": "ago. 2026",
+        "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml"
+      },
+      "referencia": {
+        "romeu_zema": 2,
+        "renan_santos": 2,
+        "augusto_cury": 2,
+        "wilson_grassi": 1
+      }
+    },
+    {
+      "uf": "GO",
+      "nome": "Goiás",
+      "idh": 0.815,
+      "votos": {
+        "lula": 20,
+        "flavio": 27,
+        "caiado": 32
+      },
+      "pesquisa": {
+        "instituto": "Quaest/Globo",
+        "data": "ago. 2026",
+        "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml"
+      },
+      "referencia": {
+        "renan_santos": 2,
+        "romeu_zema": 2,
+        "augusto_cury": 1,
+        "samara_martins": 1
+      }
+    },
+    {
+      "uf": "MT",
+      "nome": "Mato Grosso",
+      "idh": 0.812,
+      "votos": {
+        "lula": 26,
+        "flavio": 43,
+        "caiado": 4
+      },
+      "pesquisa": {
+        "instituto": "Quaest/Globo",
+        "data": "ago. 2026",
+        "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml"
+      },
+      "referencia": {
+        "renan_santos": 3,
+        "romeu_zema": 2,
+        "augusto_cury": 1,
+        "samara_martins": 1
+      }
+    },
+    {
+      "uf": "MG",
+      "nome": "Minas Gerais",
+      "idh": 0.809,
+      "votos": {
+        "lula": 30,
+        "flavio": 31,
+        "caiado": 3
+      },
+      "pesquisa": {
+        "instituto": "Quaest/Globo",
+        "data": "ago. 2026",
+        "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml"
+      },
+      "referencia": {
+        "romeu_zema": 7,
+        "renan_santos": 3,
+        "augusto_cury": 1
+      }
+    },
+    {
+      "uf": "ES",
+      "nome": "Espírito Santo",
+      "idh": 0.804,
+      "votos": {
+        "lula": 30,
+        "flavio": 37,
+        "caiado": 3
+      },
+      "pesquisa": {
+        "instituto": "Quaest/Globo",
+        "data": "ago. 2026",
+        "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml"
+      },
+      "referencia": {
+        "renan_santos": 4,
+        "romeu_zema": 2,
+        "augusto_cury": 2
+      }
+    },
+    {
+      "uf": "MS",
+      "nome": "Mato Grosso do Sul",
+      "idh": 0.797,
+      "votos": {
+        "lula": 27,
+        "flavio": 33,
+        "caiado": 5
+      },
+      "pesquisa": {
+        "instituto": "Quaest/Globo",
+        "data": "ago. 2026",
+        "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml"
+      },
+      "referencia": {
+        "renan_santos": 4,
+        "augusto_cury": 3,
+        "samara_martins": 2,
+        "romeu_zema": 2,
+        "clariana_barao": 1
+      }
+    },
+    {
+      "uf": "TO",
+      "nome": "Tocantins",
+      "idh": 0.797,
+      "votos": {
+        "lula": 37,
+        "flavio": 32,
+        "caiado": 7
+      },
+      "pesquisa": {
+        "instituto": "Quaest/Globo",
+        "data": "ago. 2026",
+        "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml"
+      },
+      "referencia": {
+        "renan_santos": 3,
+        "augusto_cury": 2,
+        "romeu_zema": 1,
+        "samara_martins": 1,
+        "wilson_grassi": 1,
+        "clariana_barao": 1
+      }
+    },
+    {
+      "uf": "RO",
+      "nome": "Rondônia",
+      "idh": 0.786,
+      "votos": {
+        "lula": 25,
+        "flavio": 45,
+        "caiado": 3
+      },
+      "pesquisa": {
+        "instituto": "Quaest/Globo",
+        "data": "ago. 2026",
+        "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml"
+      },
+      "referencia": {
+        "renan_santos": 3,
+        "romeu_zema": 2,
+        "augusto_cury": 1,
+        "wilson_grassi": 1,
+        "clariana_barao": 1
+      }
+    },
+    {
+      "uf": "RR",
+      "nome": "Roraima",
+      "idh": 0.78,
+      "votos": {
+        "lula": 17,
+        "flavio": 52,
+        "caiado": 3
+      },
+      "pesquisa": {
+        "instituto": "Quaest/Globo",
+        "data": "ago. 2026",
+        "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml"
+      },
+      "referencia": {
+        "renan_santos": 4,
+        "augusto_cury": 3,
+        "samara_martins": 1,
+        "romeu_zema": 1,
+        "rui_pimenta": 1
+      }
+    },
+    {
+      "uf": "RN",
+      "nome": "Rio Grande do Norte",
+      "idh": 0.778,
+      "votos": {
+        "lula": 54,
+        "flavio": 20,
+        "caiado": 2
+      },
+      "pesquisa": {
+        "instituto": "Quaest/Globo",
+        "data": "ago. 2026",
+        "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml"
+      },
+      "referencia": {
+        "renan_santos": 2,
+        "augusto_cury": 1,
+        "romeu_zema": 1
+      }
+    },
+    {
+      "uf": "CE",
+      "nome": "Ceará",
+      "idh": 0.773,
+      "votos": {
+        "lula": 55,
+        "flavio": 22,
+        "caiado": 1
+      },
+      "pesquisa": {
+        "instituto": "Genial/Quaest",
+        "data": "jul. 2026",
+        "url": "https://g1.globo.com/ce/ceara/eleicoes/2026/noticia/2026/07/30/quaest-ceara-presidente-julho.ghtml"
+      },
+      "referencia": {
+        "renan_santos": 2,
+        "romeu_zema": 1,
+        "augusto_cury": 1,
+        "cabo_daciolo": 1,
+        "samara_martins": 1
+      }
+    },
+    {
+      "uf": "AM",
+      "nome": "Amazonas",
+      "idh": 0.767,
+      "votos": {
+        "lula": 38,
+        "flavio": 33,
+        "caiado": 2
+      },
+      "pesquisa": {
+        "instituto": "Quaest/Globo",
+        "data": "ago. 2026",
+        "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml"
+      },
+      "referencia": {
+        "renan_santos": 3,
+        "augusto_cury": 3,
+        "romeu_zema": 1,
+        "clariana_barao": 1
+      }
+    },
+    {
+      "uf": "PE",
+      "nome": "Pernambuco",
+      "idh": 0.767,
+      "votos": {
+        "lula": 54,
+        "flavio": 19,
+        "caiado": 3
+      },
+      "pesquisa": {
+        "instituto": "Quaest/Globo",
+        "data": "ago. 2026",
+        "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml"
+      },
+      "referencia": {
+        "renan_santos": 2,
+        "augusto_cury": 1,
+        "romeu_zema": 1
+      }
+    },
+    {
+      "uf": "PI",
+      "nome": "Piauí",
+      "idh": 0.764,
+      "votos": {
+        "lula": 61.8,
+        "flavio": 18.1,
+        "caiado": 1.2
+      },
+      "pesquisa": {
+        "instituto": "Instituto GP1",
+        "data": "ago. 2026",
+        "url": "https://www.gp1.com.br/eleicoes-2026/noticia/2026/8/18/instituto-gp1-lula-tem-725-e-flavio-bolsonaro-212-dos-votos-validos-no-piaui-629445.html"
+      },
+      "referencia": {
+        "renan_santos": 1.9,
+        "augusto_cury": 1.0,
+        "romeu_zema": 0.5
+      }
+    },
+    {
+      "uf": "SE",
+      "nome": "Sergipe",
+      "idh": 0.761,
+      "votos": {
+        "lula": 53,
+        "flavio": 19,
+        "caiado": 3
+      },
+      "pesquisa": {
+        "instituto": "Quaest/Globo",
+        "data": "ago. 2026",
+        "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml"
+      },
+      "referencia": {
+        "augusto_cury": 2,
+        "renan_santos": 2,
+        "samara_martins": 1
+      }
+    },
+    {
+      "uf": "PB",
+      "nome": "Paraíba",
+      "idh": 0.76,
+      "votos": {
+        "lula": 50,
+        "flavio": 21,
+        "caiado": 3
+      },
+      "pesquisa": {
+        "instituto": "Quaest/Globo",
+        "data": "ago. 2026",
+        "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml"
+      },
+      "referencia": {
+        "renan_santos": 2,
+        "romeu_zema": 1,
+        "augusto_cury": 1,
+        "samara_martins": 1
+      }
+    },
+    {
+      "uf": "AP",
+      "nome": "Amapá",
+      "idh": 0.759,
+      "votos": {
+        "lula": 36,
+        "flavio": 33,
+        "caiado": 2
+      },
+      "pesquisa": {
+        "instituto": "Quaest/Globo",
+        "data": "ago. 2026",
+        "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml"
+      },
+      "referencia": {
+        "renan_santos": 3,
+        "augusto_cury": 2,
+        "romeu_zema": 1,
+        "rui_pimenta": 1
+      }
+    },
+    {
+      "uf": "BA",
+      "nome": "Bahia",
+      "idh": 0.759,
+      "votos": {
+        "lula": 50,
+        "flavio": 17,
+        "caiado": 4
+      },
+      "pesquisa": {
+        "instituto": "Quaest/Globo",
+        "data": "ago. 2026",
+        "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml"
+      },
+      "referencia": {
+        "augusto_cury": 4,
+        "rui_pimenta": 2,
+        "renan_santos": 1,
+        "romeu_zema": 1,
+        "samara_martins": 1
+      }
+    },
+    {
+      "uf": "PA",
+      "nome": "Pará",
+      "idh": 0.758,
+      "votos": {
+        "lula": 37,
+        "flavio": 29,
+        "caiado": 2
+      },
+      "pesquisa": {
+        "instituto": "Quaest/Globo",
+        "data": "ago. 2026",
+        "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml"
+      },
+      "referencia": {
+        "augusto_cury": 5,
+        "renan_santos": 3,
+        "edmilson_costa": 1,
+        "samara_martins": 1,
+        "romeu_zema": 1
+      }
+    },
+    {
+      "uf": "AC",
+      "nome": "Acre",
+      "idh": 0.754,
+      "votos": {
+        "lula": 25,
+        "flavio": 42,
+        "caiado": 5
+      },
+      "pesquisa": {
+        "instituto": "Quaest/Globo",
+        "data": "ago. 2026",
+        "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml"
+      },
+      "referencia": {
+        "renan_santos": 2,
+        "augusto_cury": 2,
+        "romeu_zema": 2,
+        "samara_martins": 1
+      }
+    },
+    {
+      "uf": "AL",
+      "nome": "Alagoas",
+      "idh": 0.746,
+      "votos": {
+        "lula": 44,
+        "flavio": 29,
+        "caiado": 1
+      },
+      "pesquisa": {
+        "instituto": "Quaest/Globo",
+        "data": "ago. 2026",
+        "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml"
+      },
+      "referencia": {
+        "renan_santos": 2,
+        "samara_martins": 1,
+        "augusto_cury": 1,
+        "rui_pimenta": 1
+      }
+    },
+    {
+      "uf": "MA",
+      "nome": "Maranhão",
+      "idh": 0.745,
+      "votos": {
+        "lula": 58,
+        "flavio": 20,
+        "caiado": 2
+      },
+      "pesquisa": {
+        "instituto": "Quaest/Globo",
+        "data": "ago. 2026",
+        "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml"
+      },
+      "referencia": {
+        "renan_santos": 2,
+        "augusto_cury": 1,
+        "wilson_grassi": 1
+      }
+    }
+  ],
+  "fontes": [
+    {
+      "titulo": "IDHM 2024 — Radar IDHM (PNUD)",
+      "url": "https://www.undp.org/pt/brazil/desenvolvimento-humano/painel-idhm",
+      "descricao": "Índice de Desenvolvimento Humano Municipal por estado, divulgado em maio/2026. Fonte dos valores consolidados: Valor Econômico / PNUD."
+    },
+    {
+      "titulo": "Valor Econômico — Ranking IDHM por estado (2024)",
+      "url": "https://valor.globo.com/brasil/noticia/2026/05/27/os-dois-brasis-do-idhm-quem-ja-e-muito-alto-e-quem-ainda-corre-atras.ghtml",
+      "descricao": "Tabela completa com IDHM consolidado de todos os estados."
+    },
+    {
+      "titulo": "G1 — Mapa Quaest: disputa presidencial nos estados",
+      "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml",
+      "descricao": "Pesquisas Quaest (Globo/afiliadas), 24–29 ago. 2026. 24 estados + DF. Margem ±2 p.p. (SP) ou ±3 p.p."
+    },
+    {
+      "titulo": "G1 — Quaest Ceará (1º turno)",
+      "url": "https://g1.globo.com/ce/ceara/eleicoes/2026/noticia/2026/07/30/quaest-ceara-presidente-julho.ghtml",
+      "descricao": "Genial/Quaest, 24–28 jul. 2026. Lula 55%, Flávio 22%. Margem ±3 p.p."
+    },
+    {
+      "titulo": "GP1 — Pesquisa presidencial no Piauí",
+      "url": "https://www.gp1.com.br/eleicoes-2026/noticia/2026/8/18/instituto-gp1-lula-tem-725-e-flavio-bolsonaro-212-dos-votos-validos-no-piaui-629445.html",
+      "descricao": "Instituto GP1, 11–13 ago. 2026. Lula 61,8%, Flávio 18,1% (votos totais). Margem ±2,83 p.p."
+    }
+  ]
+}

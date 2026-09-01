@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>IDH vs VOTO</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a2332;
+      --text: #e8edf4;
+      --muted: #8b9cb3;
+      --lula: #c41e3a;
+      --lula-light: #e8354f;
+      --flavio: #1e5aa8;
+      --flavio-light: #3d7fd4;
+      --caiado: #2d8a4e;
+      --caiado-light: #4cb86e;
+      --border: #2a3a52;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 2rem 1.5rem 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem 3rem;
+    }
+
+    .legend {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .legend-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+    }
+
+    .legend-dot.lula { background: var(--lula); }
+    .legend-dot.flavio { background: var(--flavio); }
+    .legend-dot.caiado { background: var(--caiado); }
+
+    .charts-grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .chart-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .chart-card h2 {
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .chart-card p {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .chart-wrap {
+      position: relative;
+      height: 520px;
+    }
+
+    .chart-wrap.scatter {
+      height: 480px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 0.5rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+
+    th, td {
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    tr:hover td { background: rgba(255,255,255,0.03); }
+
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .badge.lula { background: rgba(196, 30, 58, 0.25); color: var(--lula-light); }
+    .badge.flavio { background: rgba(30, 90, 168, 0.25); color: var(--flavio-light); }
+    .badge.caiado { background: rgba(45, 138, 78, 0.25); color: var(--caiado-light); }
+
+    .sources {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .sources h2 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .sources ul {
+      list-style: none;
+    }
+
+    .sources li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+
+    .sources li:last-child { border-bottom: none; }
+
+    .sources a {
+      color: var(--flavio-light);
+      text-decoration: none;
+    }
+
+    .sources a:hover { text-decoration: underline; }
+
+    .sources .meta {
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin-top: 0.25rem;
+    }
+
+    .note {
+      background: rgba(30, 90, 168, 0.12);
+      border: 1px solid rgba(30, 90, 168, 0.3);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .loading, .error {
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+
+    .loading {
+      background: rgba(30, 90, 168, 0.12);
+      color: var(--muted);
+    }
+
+    .error {
+      background: rgba(196, 30, 58, 0.15);
+      border: 1px solid rgba(196, 30, 58, 0.4);
+      color: var(--lula-light);
+    }
+
+    .secondary {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .secondary h2 {
+      font-size: 1.1rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .secondary-intro {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .secondary-intro code {
+      font-size: 0.8rem;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+    }
+
+    .secondary-highlight {
+      background: rgba(139, 156, 179, 0.1);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      font-size: 0.875rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .secondary-highlight strong {
+      color: var(--text);
+    }
+
+    .secondary-scenario {
+      background: rgba(45, 138, 78, 0.1);
+      border: 1px solid rgba(45, 138, 78, 0.25);
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 1rem;
+    }
+
+    .secondary-scenario strong {
+      color: var(--caiado-light);
+    }
+
+    .badge.secondary {
+      background: rgba(139, 156, 179, 0.2);
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>IDH vs VOTO</h1>
+    <p class="subtitle">
+      Índice de Desenvolvimento Humano Municipal (IDHM 2024) e intenção de voto para
+      Lula (PT) e Flávio Bolsonaro (PL) no 1º turno presidencial, por estado.
+    </p>
+  </header>
+
+  <main>
+    <div class="legend">
+      <div class="legend-item">
+        <span class="legend-dot lula"></span>
+        <span>Lula à frente</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-dot flavio"></span>
+        <span>Flávio Bolsonaro à frente</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-dot caiado"></span>
+        <span>Ronaldo Caiado à frente</span>
+      </div>
+    </div>
+
+    <div class="charts-grid">
+      <div class="chart-card">
+        <h2>Estados por IDH — intenção de voto</h2>
+        <p>Barra = percentual do candidato à frente. Label: nome do estado e IDHM.</p>
+        <div class="chart-wrap">
+          <canvas id="barChart"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h2>Correlação IDH × vantagem eleitoral</h2>
+        <p>Eixo X: IDHM (2024). Eixo Y: Lula % − Flávio % (pontos positivos = vantagem de Lula).</p>
+        <div class="chart-wrap scatter">
+          <canvas id="scatterChart"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h2>Tabela completa</h2>
+        <div class="table-wrap">
+          <table id="dataTable">
+            <thead>
+              <tr>
+                <th>Estado</th>
+                <th>IDHM 2024</th>
+                <th>Lula %</th>
+                <th>Flávio %</th>
+                <th>Caiado %</th>
+                <th>À frente</th>
+                <th>Fonte</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <section class="secondary" id="secondarySection">
+      <h2>Candidatos secundários</h2>
+      <p class="secondary-intro">
+        Resumo dos presidenciáveis além de Lula, Flávio Bolsonaro e Ronaldo Caiado,
+        conforme campo <code>referencia</code> das pesquisas por estado.
+      </p>
+      <div class="secondary-highlight" id="secondaryHighlight"></div>
+      <div class="table-wrap">
+        <table id="secondaryTable">
+          <thead>
+            <tr>
+              <th>Candidato</th>
+              <th>Partido</th>
+              <th>Melhor %</th>
+              <th>Estado (melhor)</th>
+              <th>Estados com voto</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="secondary-scenario" id="secondaryScenario"></div>
+    </section>
+
+    <section class="sources">
+      <h2>Fontes</h2>
+      <ul id="sourcesList"></ul>
+      <div class="note"></div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      function siteBasePath() {
+        const pathname = window.location.pathname;
+        if (pathname.endsWith("/")) return pathname;
+        const last = pathname.split("/").pop() || "";
+        if (last.includes(".")) {
+          return pathname.slice(0, pathname.lastIndexOf("/") + 1);
+        }
+        return pathname + "/";
+      }
+
+      function assetUrl(file) {
+        const parts = file.split("?");
+        const name = parts[0];
+        const query = parts[1];
+        const base = siteBasePath();
+        return query ? `${base}${name}?${query}` : `${base}${name}`;
+      }
+
+      const appScript = document.createElement("script");
+      appScript.src = assetUrl(`app.js?_=${Date.now()}`);
+      appScript.defer = true;
+      document.body.appendChild(appScript);
+    })();
+  </script>
+</body>
+</html>
