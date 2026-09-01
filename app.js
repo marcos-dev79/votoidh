@@ -60,6 +60,10 @@ function renderMeta(meta) {
   document.title = meta.titulo;
   document.querySelector("h1").textContent = meta.titulo;
   document.querySelector(".subtitle").textContent = meta.descricao;
+  const dateEl = document.querySelector(".subtitle-date");
+  if (dateEl) {
+    dateEl.textContent = meta.subtitulo_data || "";
+  }
   document.querySelector(".note").textContent = meta.nota;
 }
 

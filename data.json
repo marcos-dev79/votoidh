@@ -2,6 +2,7 @@
   "meta": {
     "titulo": "IDH vs VOTO",
     "descricao": "Índice de Desenvolvimento Humano Municipal (IDHM 2024) e intenção de voto para Lula (PT), Flávio Bolsonaro (PL) e Ronaldo Caiado (PSD) no 1º turno presidencial, por estado.",
+    "subtitulo_data": "IDHM 2024 (PNUD, divulgado em 26 de maio de 2026) · Intenção de voto: 24 a 29 de agosto de 2026 (Quaest/Globo, 24 estados e DF); Ceará: 24 a 28 de julho de 2026 (Genial/Quaest); Piauí: 11 a 13 de agosto de 2026 (Instituto GP1)",
     "idhm": {
       "ano": 2024,
       "indicador": "IDHM",
