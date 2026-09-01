@@ -1,63 +1,62 @@
 # IDH vs VOTO
 
-Visualização do **IDHM 2024** (PNUD) e intenção de voto presidencial por estado brasileiro — Lula (PT), Flávio Bolsonaro (PL) e Ronaldo Caiado (PSD), com referência aos demais candidatos testados nas pesquisas.
+Página que cruza o **Índice de Desenvolvimento Humano Municipal (IDHM 2024)** com as **intenções de voto** na eleição presidencial de 2026, estado a estado.
 
-## Demo
+**Site:** https://marcos-dev79.github.io/votoidh/
 
-Após publicar no GitHub Pages, o site estará em:
+## O que a pesquisa mostra
 
-`https://<usuario>.github.io/<repositorio>/`
+O objetivo é visualizar, para cada unidade da federação, a relação entre o nível de desenvolvimento humano (longevidade, educação e renda) e o cenário eleitoral no **1º turno**, com base nas pesquisas mais recentes disponíveis no momento da coleta.
 
-## Estrutura
+**IDHM (2024)** — valores consolidados por estado, do Radar IDHM (PNUD/IBGE), divulgados em maio de 2026. O Distrito Federal lidera (0,866); Maranhão e Alagoas ficam na base do ranking (0,745 e 0,746).
 
-| Arquivo      | Descrição                          |
-|--------------|------------------------------------|
-| `index.html` | Página principal                   |
-| `app.js`     | Lógica, gráficos e renderização    |
-| `data.json`  | Dados estruturados (IDH + pesquisas)|
+**Voto** — percentuais de intenção de voto para:
 
-## Desenvolvimento local
+- Luiz Inácio Lula da Silva (PT)
+- Flávio Bolsonaro (PL)
+- Ronaldo Caiado (PSD)
 
-Requer um servidor HTTP (o `fetch` não funciona com `file://`):
+A coloração dos estados no gráfico segue quem está à frente numericamente: **vermelho** (Lula), **azul** (Flávio) ou **verde** (Caiado). Em empates técnicos dentro da margem de erro, a cor usa o candidato com maior percentual na pesquisa.
+
+## Fontes das pesquisas
+
+| Cobertura | Instituto | Período |
+|-----------|-----------|---------|
+| 24 estados + DF | Quaest (Grupo Globo e afiliadas) | 24–29 ago. 2026 |
+| Ceará | Genial/Quaest | jul. 2026 |
+| Piauí | Instituto GP1 | ago. 2026 |
+
+Margens de erro: ±2 p.p. em São Paulo e ±3 p.p. nos demais estados (Quaest).
+
+Nenhum candidato além de Lula, Flávio e Caiado **lidera** em algum estado nessas sondagens. Goiás é a exceção entre os três principais: Caiado aparece à frente (32%). O melhor desempenho entre os **secundários** é Romeu Zema (Novo), com 7% em Minas Gerais.
+
+## O que foi construído
+
+- **`index.html`** — layout, gráficos (Chart.js) e seções da página
+- **`app.js`** — carrega `data.json` de forma assíncrona (sem cache) e renderiza tabelas e gráficos
+- **`data.json`** — dados estruturados: IDHM, votos dos três principais, campo `referencia` com outros candidatos testados (Renan Santos, Zema, Augusto Cury, etc.) e catálogo em `meta.candidatos`
+
+Na página:
+
+1. Gráfico de barras — estados por IDH, com nome do estado e IDHM; barra = % do candidato à frente
+2. Dispersão — IDHM × diferença Lula − Flávio
+3. Tabela completa por estado
+4. Resumo dos candidatos secundários (melhor % e estado)
+5. Fontes com links
+
+## Como abrir localmente
+
+O `fetch` do JSON exige um servidor HTTP:
 
 ```bash
 python3 -m http.server 8765
 ```
 
-Abra: http://localhost:8765
+Acesse http://localhost:8765
 
-## Publicação no GitHub Pages
+## Referências
 
-### Opção A — GitHub Actions (recomendado)
+- [PNUD — Painel IDHM](https://www.undp.org/pt/brazil/desenvolvimento-humano/painel-idhm)
+- [G1 — Mapa Quaest por estado (ago. 2026)](https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/29/mapa-mostra-como-esta-a-disputa-presidencial-nos-estados-segundo-a-quaest.ghtml)
 
-1. Crie um repositório no GitHub e envie este projeto na branch `main`.
-2. Em **Settings → Pages → Build and deployment**, selecione **GitHub Actions**.
-3. Ao fazer push na `main`, o workflow `.github/workflows/deploy.yml` publica o site automaticamente.
-
-### Opção B — Deploy manual
-
-1. **Settings → Pages → Build and deployment**
-2. Source: **Deploy from a branch**
-3. Branch: `main` / pasta **/ (root)**
-
-### Primeiro push
-
-```bash
-git init
-git add .
-git commit -m "Publica IDH vs VOTO no GitHub Pages"
-git branch -M main
-git remote add origin https://github.com/<usuario>/<repositorio>.git
-git push -u origin main
-```
-
-## Fontes dos dados
-
-- IDHM 2024: PNUD Radar IDHM
-- Pesquisas: Quaest/Globo (ago. 2026), com exceções no `data.json` (Ceará, Piauí)
-
-Detalhes e links na seção **Fontes** do site.
-
-## Licença
-
-Dados de pesquisas e IDH são de terceiros; consulte as fontes originais para uso e reprodução.
+Links completos na seção **Fontes** do site.
